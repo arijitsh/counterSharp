@@ -53,10 +53,5 @@ class CbmcToSmtManager(CbmcManager):
 			smtfile.seek(0)
 			printedProjections = False
 			for line in smtfile:
-				if line.startswith("(check-sat)") and not printedProjections:
-					for p in projectionVars:
-						print("(project-on "+p+")", file=outputF)
-					printedProjections=True
-					print("(count-sat)", file=outputF)
-				elif not line.startswith("(get-value"):
+				if not line.startswith("(get-value"):
 					print(line,file=outputF)
